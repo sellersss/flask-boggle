@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} Boggle {% endblock %}
+
+{% block content %}
+<div class="container-fluid text-center text-light bg-dark pb-5">
+    <h1 class="display-5 p-1">Boggle</h1>
+
+    <table class="table table-bordered table-dark">
+        <tbody>
+            {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                <td>{{cell}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <p class="col-6 text-center h4" id="score">Score: <span>0</span></p>
+        <p class="col-6 text-center h4" id="high-score">High Score: <span>{{session['highscore']}}</span></p>
+    </div>
+
+    <p class="h2 pt-1" id="timer">Timer: <span>60</span></p>
+
+    <form id="guess-form" method='get'>
+        <div class="container">
+            <div class="form-row align-items-center justify-content-center">
+                <div class="col-8 col-md-6">
+                    <input class="form-control form-control-md" type="text" name="guess" id="guess"
+                        placeholder="Guess..." minlength="2" required>
+                </div>
+                <div class="col-4 col-md-2">
+                    <input class="form-control btn btn-sm btn-outline-light" type="submit" value="Submit">
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <p class="h3 pt-4" id="result-msg"></p>
+
+    <button type="button" class="btn btn-info" style="display: none;" id="restart-btn">Restart</button>
+
+
+</div>
+
+
+
+{% endblock %}
